@@ -31,7 +31,7 @@ const TodoForm = ({
     if (id) {
       //send a update req
       const response = await fetch(
-        process.env.REACT_APP_URL + "/api/todo/" + id,
+        process.env.REACT_APP_BACKEND_URL + "/api/todo/" + id,
         {
           method: "PATCH",
           body: JSON.stringify(body),
@@ -59,14 +59,17 @@ const TodoForm = ({
       });
     } else {
       //send a post req
-      const response = await fetch(process.env.REACT_APP_URL + "/api/todo/", {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "/api/todo/",
+        {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
 
       //dispatch a action in the context

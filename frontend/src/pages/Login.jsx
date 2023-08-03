@@ -18,7 +18,7 @@ const Login = () => {
 
     //send a post req of login
     const response = await fetch(
-      process.env.REACT_APP_URL + "/api/user/login",
+      process.env.REACT_APP_BACKEND_URL + "/api/user/login",
       {
         method: "POST",
         body: JSON.stringify(body),

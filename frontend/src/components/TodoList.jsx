@@ -12,11 +12,14 @@ const TodoList = ({ setEditedObject, setOpenModal }) => {
   //fetching todos
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch(process.env.REACT_APP_URL + "/api/todo", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "/api/todo",
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       dispatch({ type: "GET_TODOS", payload: json });
     };
@@ -33,7 +36,7 @@ const TodoList = ({ setEditedObject, setOpenModal }) => {
   const handleDelete = async (item) => {
     //send a delete req
     const response = await fetch(
-      process.env.REACT_APP_URL + "/api/todo/" + item._id,
+      process.env.REACT_APP_BACKEND_URL + "/api/todo/" + item._id,
       {
         method: "DELETE",
         headers: {
@@ -66,14 +69,17 @@ const TodoList = ({ setEditedObject, setOpenModal }) => {
     todos[unfinishedItemIndex] = updatedObject;
 
     //send a patch req with updated body
-    const response = await fetch("/api/todo/" + itemId, {
-      method: "PATCH",
-      body: JSON.stringify(updatedObject),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND_URL + "/api/todo/" + itemId,
+      {
+        method: "PATCH",
+        body: JSON.stringify(updatedObject),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     const json = await response.json();
 
     //dispatch a action in the context

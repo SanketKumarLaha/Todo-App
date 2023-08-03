@@ -18,7 +18,7 @@ const Signup = () => {
 
     //send a post req of signup
     const response = await fetch(
-      process.env.REACT_APP_URL + "/api/user/signup",
+      process.env.REACT_APP_BACKEND_URL + "/api/user/signup",
       {
         method: "POST",
         body: JSON.stringify(body),
